@@ -1,9 +1,9 @@
 import React from "react";
 import "./CompanyCard.css";
 
-function CompanyCard({ company }) {
+function CompanyCard({ company, details }) {
   return (
-    <div className="CompanyCard card card-active mt-3">
+    <div className="CompanyCard card card-active mt-3" onClick={() => details(company.handle)}>
       <h5 className="card-header">{company.name}</h5>
       {/* <div className="card-img">
         <img src={company.logoUrl ? company.logoUrl : ""}/>

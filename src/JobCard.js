@@ -29,7 +29,7 @@ function JobCard({ job }) {
     <div className="JobCard card card-active mt-3">
       <div className="card-body">
         <h6 className="card-text">{job.title}</h6>
-        <p className="card-text">{job.companyName ? job.companyName : ""}</p>
+        <p className="card-text">{job.companyName ? job.companyName : null}</p>
         {job.salary ?
           <p className="card-text">Salary: <small>
             <NumberFormat

@@ -19,7 +19,7 @@ function Routes() {
       <Route exact path="/jobs">
         <JobsList />
       </Route>
-      <Route exact path="/companies/:name">
+      <Route exact path="/companies/:handle">
         <CompanyDetails />
       </Route>
       <Route exact path="/login">
