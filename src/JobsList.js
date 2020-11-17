@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import JoblyApi from "./api";
+import JobCard from "./JobCard";
+import "./JobsList.css";
 
-function JobsList(props) {
+function JobsList() {
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(function getJobs() {
+    async function jobsApi() {
+      const result = await JoblyApi.getAllJobs();
+      console.log("------->RESULT", result)
+      setJobs(result);
+    }
+    jobsApi();
+  }, []);
+
   return (
-    <div>JobsList</div>
+    <div className="JobsList">
+      {jobs.map(j => (
+        <JobCard key={j.id} job={j}/>
+      ))}
+    </div>
   )
 }
 

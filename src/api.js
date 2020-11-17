@@ -41,12 +41,29 @@ class JoblyApi {
     return res.company;
   }
 
-  static async getAllCompanies() {
-    let res = await this.request(`companies`);
+
+  static async getAllCompanies(query) {
+    let res;
+    if (query) {
+      // const {name, minEmployees, maxEmployees} = query;
+      res = await this.request(`companies?name=${query.term}`);
+    } else {
+      res = await this.request(`companies`);
+    }
     return res.companies;
   }
 
-  // obviously, you'll add a lot here ...
+  static async getAllJobs() {
+    let res = await this.request(`jobs`);
+    return res.jobs;
+  }
+
+  // static async applyToJob(jobId) {
+  //   let res = await this.request(`${username}/id/${jobId}`)
+  //   return res.applied;
+  // }
+
+
 }
 
 // for now, put token ("testuser" / "password" on class)

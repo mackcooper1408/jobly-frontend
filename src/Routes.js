@@ -10,7 +10,7 @@ import ProfileForm from './ProfileForm';
 import Home from './Home';
 import NotFound from './NotFound';
 
-function Routes(props) {
+function Routes() {
   return (
     <Switch>
       <Route exact path="/companies">
