@@ -15,12 +15,11 @@ function App() {
     const localUser = localStorage.getItem("currentUser") || null;
     setToken(localToken);
     setCurrentUser(localUser);
-  })
+  }, []);
 
 
   async function signup(userData) {
     const result = await JoblyApi.signup(userData);
-    console.log("TOKEN RESULT--->", result);
     setToken(result);
     setCurrentUser(userData.username);
     localStorage.setItem("token", result);
@@ -29,7 +28,6 @@ function App() {
   
   async function login(userData) {
     const result = await JoblyApi.login(userData);
-    console.log("TOKEN RESULT--->", result);
     setToken(result);
     setCurrentUser(userData.username);
     localStorage.setItem("token", result);
