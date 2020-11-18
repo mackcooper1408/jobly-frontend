@@ -1,7 +1,15 @@
 .NavBar ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    width: 25vw;
+    width: 35vw;
+}
+
+.NavBar-anon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 15vw;
 }

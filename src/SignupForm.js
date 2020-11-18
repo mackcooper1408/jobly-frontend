@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./SignupForm.css";
 
 
@@ -12,11 +13,12 @@ function SignupForm({ signup }) {
     email: ""
   };
   const [formData, setFormData] = useState(initialState);
+  const history = useHistory();
 
   function handleSubmit(evt) {
     evt.preventDefault();
     signup(formData);
-    setFormData(initialState);
+    history.push("/companies");
   }
 
   /** Update local state w/curr state of input elem */
