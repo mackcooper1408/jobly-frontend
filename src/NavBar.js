@@ -14,6 +14,9 @@ function NavBar(props) {
           <NavLink className="nav-link" exact to="/jobs">Jobs</NavLink>
         </li>
         <li className="nav-item">
+          <NavLink className="btn btn-sm btn-primary" exact to="/signup">Sign Up</NavLink>
+        </li>
+        <li className="nav-item">
           <NavLink className="btn btn-sm btn-primary" exact to="/profile">Edit Profile</NavLink>
         </li>
       </ul>
