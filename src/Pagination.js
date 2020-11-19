@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 // ...
@@ -23,7 +23,7 @@ const range = (from, to, step = 1) => {
 }
 // pageLimit = 10,
 
-function Pagination({ pageNeighbours = 0, gotoPage, currentPage = 1, totalPages, totalRecords }) {
+function Pagination({ pageNeighbours = 1, gotoPage, currentPage = 1, totalPages, totalRecords }) {
 
   // pageLimit = typeof pageLimit === 'number' ? pageLimit : 10;
   // totalRecords = typeof totalRecords === 'number' ? totalRecords : 0;
