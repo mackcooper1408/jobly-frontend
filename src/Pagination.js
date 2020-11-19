@@ -108,18 +108,18 @@ function Pagination({ pageNeighbours = 1, gotoPage, currentPage = 1, totalPages,
 
 
   const handleClick = page => evt => {
-    evt.preventDefault();
+    // evt.preventDefault();
     console.log("PAGE -->", page);
     gotoPage(page);
   }
 
   const handleMoveLeft = evt => {
-    evt.preventDefault();
+    // evt.preventDefault();
     gotoPage(currentPage - (pageNeighbours * 2) - 1);
   }
 
   const handleMoveRight = evt => {
-    evt.preventDefault();
+    // evt.preventDefault();
     gotoPage(currentPage + (pageNeighbours * 2) + 1);
   }
 
@@ -159,6 +159,9 @@ function Pagination({ pageNeighbours = 1, gotoPage, currentPage = 1, totalPages,
                 <a className="page-link" href="#" onClick={handleClick(page)}>{page}</a>
               </li>
             );
+
+            // <a href="#" onClick={() => {this.handleClick}}>click me</a>
+
 
           })}
 
