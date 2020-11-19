@@ -29,7 +29,7 @@ function JobsList() {
     setJobs(result);
   }
 
-  if (!currentUser) return (<Alerts alerts={["NotAllowed"]}/>);
+  if (!currentUser) return (<Alerts alerts={["Not Allowed, Please Sign In"]}/>);
 
 
   if (!jobs) return <h1>Loading...</h1>

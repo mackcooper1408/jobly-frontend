@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+
+import Alerts from "./Alerts";
 import userContext from "./userContext";
 import JoblyApi from "./api";
 import JobCard from "./JobCard";
@@ -26,6 +28,8 @@ function CompanyDetails() {
   }, [handle, currentUser])
 
   if (!jobs) return <h1>Loading...</h1>
+
+  if (!currentUser) return (<Alerts alerts={["Not Allowed, Please Sign In"]}/>);
 
   return (
     <div>
