@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import userContext from "./userContext";
 
-function LoginForm({ login }) {
+function LoginForm() {
   const initialState = {username: "", password: ""};
   const [formData, setFormData] = useState(initialState);
   const history = useHistory();
+  const { login } = useContext(userContext);
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    login(formData);
+    await login(formData);
     history.push("/companies");
   }
 

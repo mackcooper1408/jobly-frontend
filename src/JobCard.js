@@ -1,27 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import userContext from "./userContext";
 import "./JobCard.css";
 import NumberFormat from 'react-number-format';
 
 
-function JobCard({ job }) {
-  const [applied, setApplied] = useState(false);
+function JobCard({ job, isApplied }) {
+  const [applied, setApplied] = useState(isApplied);
+  const { currentUser, apply } = useContext(userContext);
+  // const currentUser = localStorage.getItem("currentUser");
 
-  // useEffect(() => {
-  //   async function getApplicationStatus() {
-
-  //     setApplied(result);
-  //   }
-  //   getApplicationStatus();
-  // }, []);
-
-  // async function apply(jobId) {
-  //   const result = await JoblyApi.applyToJob(jobId);
-  //   console.log("------->RESULT", result)
-  //   setApplied(true);
-  // }
-
-  // TEMPORARY
   function handleClick() {
+    apply(currentUser, job.id);
     setApplied(true);
   }
 

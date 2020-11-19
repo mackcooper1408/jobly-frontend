@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, useHistory } from 'react-router-dom';
+import userContext from "./userContext";
 import "./NavBar.css";
 
-function NavBar({ currentUser, logout }) {
+// function NavBar({ currentUser, logout }) {
+function NavBar() {
+  const { currentUser, logout } = useContext(userContext);
   const history = useHistory();
 
   function handleClick() {

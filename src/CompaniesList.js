@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./CompaniesList.css";
 
 import JoblyApi from "./api";
 import CompanyCard from "./CompanyCard";
 import SearchForm from "./SearchForm";
 import { useHistory } from "react-router-dom";
+import userContext from "./userContext"
+import Alerts from "./Alerts"
 
 function CompaniesList() {
-  const [companies, setCompanies] = useState([]);
+  const [companies, setCompanies] = useState(null);
   const history = useHistory();
+  const { currentUser } = useContext(userContext)
 
   useEffect(function getCompanies() {
     async function companiesApi() {
@@ -29,6 +32,11 @@ function CompaniesList() {
     // evt.preventDefault();
     history.push(`/companies/${handle}`);
   }
+  
+  if (!companies) return <h1>Loading...</h1>;
+
+  if (!currentUser) return (<Alerts alerts={["NotAllowed"]}/>);
+  
 
   return (
     <div className="CompaniesList">

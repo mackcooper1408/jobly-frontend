@@ -29,6 +29,7 @@ class JoblyApi {
       console.error("API Error:", err.response);
       let message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
+      // alertMessage(Array.isArray(message) ? message : [message]);
     }
   }
 
@@ -53,8 +54,14 @@ class JoblyApi {
     return res.companies;
   }
 
-  static async getAllJobs() {
-    let res = await this.request(`jobs`);
+  static async getAllJobs(query) {
+    let res;
+    if (query) {
+      // const {name, minEmployees, maxEmployees} = query;
+      res = await this.request(`jobs?title=${query.term}`);
+    } else {
+      res = await this.request(`jobs`);
+    }
     return res.jobs;
   }
 
@@ -68,17 +75,29 @@ class JoblyApi {
     return res.token;
   }
 
-  // static async applyToJob(jobId) {
-  //   let res = await this.request(`${username}/id/${jobId}`)
-  //   return res.applied;
-  // }
+  static async getUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
 
+  static async updateUser(userData, username) {
+    // const {firstName, lastName, email, password} = userData
+    let res = await this.request(`users/${username}`, userData, "patch");
+    return res.user;
+  }
+
+  static async applyToJob(username, jobId) {
+    let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "post");
+    return res.applied;
+  }
 
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+JoblyApi.token = localStorage.getItem("token") 
+
+// || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+//   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+//   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
 export default JoblyApi;

@@ -10,7 +10,8 @@ import ProfileForm from './ProfileForm';
 import Home from './Home';
 import NotFound from './NotFound';
 
-function Routes({ signup, login }) {
+// function Routes({ signup, login, update }) {
+function Routes() {
   return (
     <Switch>
       <Route exact path="/companies">
@@ -23,10 +24,10 @@ function Routes({ signup, login }) {
         <CompanyDetails />
       </Route>
       <Route exact path="/login">
-        <LoginForm login={login}/>
+        <LoginForm />
       </Route>
       <Route exact path="/signup">
-        <SignupForm signup={signup}/>
+        <SignupForm />
       </Route>
       <Route exact path="/profile">
         <ProfileForm />

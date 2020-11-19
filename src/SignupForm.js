@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import userContext from "./userContext";
 import "./SignupForm.css";
 
 
 // { username, password, firstName, lastName, email }
-function SignupForm({ signup }) {
+function SignupForm() {
   const initialState = {
     username: "",
     password: "",
@@ -14,10 +15,11 @@ function SignupForm({ signup }) {
   };
   const [formData, setFormData] = useState(initialState);
   const history = useHistory();
+  const { signup } = useContext(userContext);
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    signup(formData);
+    await signup(formData);
     history.push("/companies");
   }
 

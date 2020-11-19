@@ -27,7 +27,7 @@ function SearchForm({ search }) {
           className="form-control"
           name="term"
           value={formData.term}
-          placeholder="Enter company name"
+          placeholder="Search Term..."
           onChange={handleChange} />
       </div>
       <button className="btn btn-primary btn-md form-group">🔍 Search</button>
