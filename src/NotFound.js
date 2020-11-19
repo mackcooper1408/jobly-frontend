@@ -1,8 +1,13 @@
 import React from "react";
+import gif from "./images/confused_puppy.gif";
 
-function NotFound(props) {
+
+function NotFound() {
   return (
-    <div>NotFound</div>
+    <div className="my-4">
+      <h1>404 Page Not Found...</h1>
+      <img src={gif}></img>
+    </div>
   )
 }
 
