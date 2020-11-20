@@ -22,11 +22,9 @@ function CompanyDetails() {
       try {
         const companyResult = await JoblyApi.getCompany(handle);
         const userResult = await JoblyApi.getUser(currentUser);
-        console.log("result --->", companyResult);
         setUser(userResult);
         setCompany(companyResult);
       } catch(err) {
-        console.log(err);
         setCompany({ name: "", jobs: [] });
         alertMessage(err);
       }

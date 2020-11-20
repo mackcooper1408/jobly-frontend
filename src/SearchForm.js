@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { throttle } from "throttle-debounce";
+
 
 function SearchForm({ search }) {
   const initialState = { term: "" };
   const [formData, setFormData] = useState(initialState);
+
+  const throttleSearch = useRef(throttle(1000, (formData) => {
+    search(formData)
+  }));
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -10,13 +16,14 @@ function SearchForm({ search }) {
     setFormData(initialState);
   }
 
+
   /** Update local state w/curr state of input elem */
   function handleChange(evt) {
     const { name, value } = evt.target;
-    setFormData(fData => ({
-      ...fData,
-      [name]: value,
-    }));
+    const newFormData = { ...formData, [name]: value };
+
+    throttleSearch.current(newFormData);
+    setFormData(newFormData);
   }
 
   return (

@@ -11,12 +11,15 @@ function JobsList() {
   const [jobs, setJobs] = useState([]);
   const [user, setUser] = useState(null);
 
+  // Pagination Stuff
   const [currentJobs, setCurrentJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const { currentUser } = useContext(userContext);
+
   let isApplied;
 
+  // Pagination Stuff
   const pageLimit = 10;
   const totalRecords = jobs.length;
   const totalPages = Math.ceil(totalRecords / pageLimit);
@@ -25,7 +28,6 @@ function JobsList() {
     async function jobsApi() {
       const jobsResult = await JoblyApi.getAllJobs();
       const userResult = await JoblyApi.getUser(currentUser);
-      console.log("------->RESULT", jobsResult);
       setUser(userResult);
       setJobs(jobsResult);
     }
@@ -34,12 +36,10 @@ function JobsList() {
 
   useEffect(() => {
     gotoPage(1);
-
   }, [jobs]);
 
   async function search(searchTerm) {
     const result = await JoblyApi.getAllJobs(searchTerm);
-    console.log("------->RESULT", result)
     setJobs(result);
   }
 
@@ -58,8 +58,7 @@ function JobsList() {
   }
 
   function onPageChanged(data) {
-    console.log("---->DATA", data)
-    const { currentPage, totalPages, pageLimit } = data;
+    const { currentPage, pageLimit } = data;
     const offset = (currentPage - 1) * pageLimit;
     const currentJobs = jobs.slice(offset, offset + pageLimit);
 

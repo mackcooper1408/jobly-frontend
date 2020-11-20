@@ -22,14 +22,13 @@ function CompaniesList() {
   const history = useHistory();
   const { currentUser } = useContext(userContext)
 
-  const pageLimit = 2;
+  const pageLimit = 7;
   const totalRecords = companies.length;
   const totalPages = Math.ceil(totalRecords / pageLimit);
 
   useEffect(function getCompanies() {
     async function companiesApi() {
       const result = await JoblyApi.getAllCompanies();
-      console.log("------->RESULT", result)
       setCompanies(result);
       // Pagination Stuff
     }
@@ -49,7 +48,6 @@ function CompaniesList() {
 
   async function search(searchTerm) {
     const result = await JoblyApi.getAllCompanies(searchTerm);
-    console.log("------->RESULT", result)
     setCompanies(result);
   }
 
@@ -72,8 +70,7 @@ function CompaniesList() {
   }
 
   function onPageChanged(data) {
-    console.log("---->DATA", data)
-    const { currentPage, totalPages, pageLimit } = data;
+    const { currentPage, pageLimit } = data;
     const offset = (currentPage - 1) * pageLimit;
     const currentCompanies = companies.slice(offset, offset + pageLimit);
 

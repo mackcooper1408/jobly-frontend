@@ -109,7 +109,6 @@ function Pagination({ pageNeighbours = 1, gotoPage, currentPage = 1, totalPages,
 
   const handleClick = page => evt => {
     // evt.preventDefault();
-    console.log("PAGE -->", page);
     gotoPage(page);
   }
 

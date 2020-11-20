@@ -45,7 +45,7 @@ class JoblyApi {
 
   static async getAllCompanies(query) {
     let res;
-    if (query) {
+    if (query && query.term) {
       // const {name, minEmployees, maxEmployees} = query;
       res = await this.request(`companies?name=${query.term}`);
     } else {
@@ -56,7 +56,7 @@ class JoblyApi {
 
   static async getAllJobs(query) {
     let res;
-    if (query) {
+    if (query && query.term) {
       // const {name, minEmployees, maxEmployees} = query;
       res = await this.request(`jobs?title=${query.term}`);
     } else {

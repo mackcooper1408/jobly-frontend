@@ -6,7 +6,8 @@ function NotFound() {
   return (
     <div className="my-4">
       <h1>404 Page Not Found...</h1>
-      <img src={gif}></img>
+      <img src={gif}
+      alt="confused doggo"></img>
     </div>
   )
 }

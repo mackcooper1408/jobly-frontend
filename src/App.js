@@ -54,8 +54,7 @@ function App() {
   }
 
   async function apply(username, jobId) {
-    const result = await JoblyApi.applyToJob(username, jobId);
-    console.log("------->RESULT", result);
+    await JoblyApi.applyToJob(username, jobId);
   }
 
   function alertMessage(msgs) {

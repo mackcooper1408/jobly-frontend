@@ -19,7 +19,6 @@ function ProfileForm() {
   useEffect(() => {
     async function getCurrentUser() {
       const user = await JoblyApi.getUser(currentUser);
-      console.log("------>USER", user)
       const { firstName, lastName, email } = user
       setFormData({ firstName, lastName, email, password: "" });
     }
@@ -33,7 +32,6 @@ function ProfileForm() {
       update(formData, currentUser)
       history.push("/companies");
     } catch (err) {
-      console.log("result???", err);
       alertMessage(err);
       setFormData((fdata) => ({ ...fdata, password: "" }));
     }
